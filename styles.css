@@ -1,0 +1,12 @@
+.background-gray {
+    background-color: #ddd;
+}
+
+.background-white{
+    background-color: #fff;
+}
+
+#game-canvas{
+    background-color: #fff;
+    cursor: pointer;
+}

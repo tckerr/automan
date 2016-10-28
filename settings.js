@@ -1,0 +1,46 @@
+var SETTINGS = {
+
+    // ==============
+    // STATIC
+    // ==============
+
+    CANVAS_WIDTH: 900,
+    CANVAS_HEIGHT: 600,
+
+    STARTING_ROW_INDEX: 6,
+    STARTING_COLUMN_INDEX: 6,
+
+    CHUNK_SIZE_BLOCKS_X: 80, // in blocks
+    CHUNK_SIZE_BLOCKS_Y: 80,
+
+    // BLOCK
+    BLOCK_WIDTH_PX: 16,
+    BLOCK_HEIGHT_PX: 16,
+
+    // ==============
+    // DYNAMIC
+    // ==============
+
+    VIEW_RADIUS_OFFSET_PX: 1,
+
+    MAX_FPS: 30,
+    CAMERA_PX_TRAVERSAL: 20,
+
+    FPS_TRACKER_REFRESH_INTERVAL_MS: 200,
+    FPS_TRACKER_FRAME_DIF_WARNING_THRESHOLD: 2,
+
+    LOG_FPS: false,
+    LOG_CHUNK_GENERATION_REQUESTS: true,
+
+    BINDINGS: { // need a rebind function
+        CAMERA_UP_KEYCODE: 87, //w
+        CAMERA_DOWN_KEYCODE: 83, //w
+        CAMERA_LEFT_KEYCODE: 65, //w
+        CAMERA_RIGHT_KEYCODE: 68, //w
+    },
+
+    BLOCK_DEFAULT_BORDER_COLOR:  "#DDD",
+    BLOCK_DEFAULT_BORDER_WIDTH:  1,
+    BLOCK_DEFAULT_FILL_COLOR: "#EEE",
+    BLOCK_DEFAULT_FILL_COLOR_HIGHLIGHT: "#4CAF50",
+}
