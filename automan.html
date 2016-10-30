@@ -11,10 +11,10 @@
     <script type="text/javascript" src="lib\jquery-3.1.1.min.js"></script>
     <script type="text/javascript" src="lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
    
-
     <!-- GAME SCRIPTS -->
     <script type="text/javascript" src="math.js"></script>
-    <script type="text/javascript" src="settings.js"></script>
+    <script type="text/javascript" src="enum.js"></script>
+    <script type="text/javascript" src="Setting.js"></script>
     <script type="text/javascript" src="Viewport.js"></script>
     <script type="text/javascript" src="FPSTracker.js"></script>
     <script type="text/javascript" src="Block.js"></script>
@@ -43,6 +43,12 @@
                 <div class="row">FPS: {{fpsTracker.fps}}</div>
             </div>
             <div class="col-md-8 background-white">
+
+                <div ng-repeat= "(key, value) in settings.listDynamic()">
+                    <span>{{key + ": "}}</span>
+                    <input ng-model="value" ng-change="updateSetting(key, value)">
+                </div>
+
                 <div class="checkbox">
                   <label><input type="checkbox" ng-model="settings.LOG_FPS">Log FPS</label>
                   <label><input type="checkbox" ng-model="settings.LOG_CHUNK_GENERATION_REQUESTS">Log Chunk Generation</label>

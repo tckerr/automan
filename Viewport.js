@@ -26,7 +26,8 @@ Viewport.prototype.getDeltaVector = function(camera_input_state){
 
 Viewport.prototype.getModifiedDeltaVector = function(delta_vector){
     var delta_vector_inner = delta_vector;
-    delta_vector_inner.x *= SETTINGS.CAMERA_PX_TRAVERSAL;
-    delta_vector_inner.y *= SETTINGS.CAMERA_PX_TRAVERSAL;
+    var traversal_px = SETTINGS.get("CAMERA_PX_TRAVERSAL");
+    delta_vector_inner.x *= traversal_px;
+    delta_vector_inner.y *= traversal_px;
     return delta_vector_inner;
 }

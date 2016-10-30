@@ -38,6 +38,7 @@ GameManager.prototype.gameLoop = function(){
 
 GameManager.prototype.processFrame = function(grid, viewport, game_canvas, game_data, input_queue){
     game_data.frame++; 
+    game_canvas.setDimensions();
     grid.generateNeededBlocksFromView(viewport);
     this.handleInputs(input_queue, viewport, grid);    
     this.render(viewport, game_canvas, grid);

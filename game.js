@@ -1,3 +1,5 @@
+var SETTINGS = new SettingsManager();
+
 $(function(){
     'use strict';
     
@@ -8,10 +10,15 @@ $(function(){
         var gameManager = new GameManager($canvas);
         var frameLoop = gameManager.gameLoop.bind(gameManager);        
 
-        $interval(frameLoop, 1000/SETTINGS.MAX_FPS);
+        $interval(frameLoop, 1000/SETTINGS.get("MAX_FPS"));
 
         $scope.settings = SETTINGS;
         $scope.fpsTracker = new FPSTracker(gameManager.game_data);
+
+        $scope.updateSetting = function(key, value){
+            console.log(key, value)
+            SETTINGS.update(key, value);
+        }
 
     }]);
 

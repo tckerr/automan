@@ -1,12 +1,16 @@
 function GameCanvas($canvas, click_delegate){
     this.$canvas = $canvas;
     this.canvas = $canvas[0];
-    this.canvas.width = SETTINGS.CANVAS_WIDTH;
-    this.canvas.height = SETTINGS.CANVAS_HEIGHT;
+    this.setDimensions();
 
     this.ctx = this.canvas.getContext("2d"); 
 
     this.bindEventClientPosDelegate("click", click_delegate);  
+}
+
+GameCanvas.prototype.setDimensions = function(){
+    this.canvas.width = SETTINGS.get("CANVAS_WIDTH");
+    this.canvas.height = SETTINGS.get("CANVAS_HEIGHT");
 }
 
 GameCanvas.prototype.render = function(viewport, grid){

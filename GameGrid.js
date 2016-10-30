@@ -19,12 +19,12 @@ GameGrid.prototype.generateNeededBlocksFromView = function(view){
 
 GameGrid.prototype.getChunkGenerationRadiusX = function(canvas_width){
     var radius_x = this.getViewRadiusX(canvas_width);
-    return Math.ceil(radius_x/SETTINGS.CHUNK_SIZE_BLOCKS_X)*2;
+    return Math.ceil(radius_x/SETTINGS.get("CHUNK_SIZE_BLOCKS_X"))*2;
 }
 
 GameGrid.prototype.getChunkGenerationRadiusY = function(canvas_height){
     var radius_y = this.getViewRadiusY(canvas_height);
-    return Math.ceil(radius_y/SETTINGS.CHUNK_SIZE_BLOCKS_Y)*2;
+    return Math.ceil(radius_y/SETTINGS.get("CHUNK_SIZE_BLOCKS_Y"))*2;
 }
 
 GameGrid.prototype.generateChunk = function(y, x){
@@ -37,13 +37,15 @@ GameGrid.prototype.generateChunk = function(y, x){
     }
     this.chunks[y][x] = true;
 
-    if (SETTINGS.LOG_CHUNK_GENERATION_REQUESTS)
+    if (SETTINGS.get("LOG_CHUNK_GENERATION_REQUESTS"))
         console.info("Request chunk generation at: ("+x+","+y+")");
 
-    var min_x = x * SETTINGS.CHUNK_SIZE_BLOCKS_X;
-    var max_x = min_x + SETTINGS.CHUNK_SIZE_BLOCKS_X;
-    var min_y = y * SETTINGS.CHUNK_SIZE_BLOCKS_Y;
-    var max_y = min_y + SETTINGS.CHUNK_SIZE_BLOCKS_Y;
+    var chunk_size_x = SETTINGS.get("CHUNK_SIZE_BLOCKS_X");
+    var min_x = x * chunk_size_x;
+    var max_x = min_x + chunk_size_x;
+    var chunk_size_y = SETTINGS.get("CHUNK_SIZE_BLOCKS_Y");
+    var min_y = y * chunk_size_y;
+    var max_y = min_y + chunk_size_y;
 
     for (var j = min_y; j < max_y; j++){
         for (var i = min_x; i < max_x; i++){        
@@ -61,8 +63,8 @@ GameGrid.prototype.generateChunk = function(y, x){
 GameGrid.prototype.generateChunkRadius = function(x, y){
     
     // get chunk
-    var chunk_x = Math.floor(x/SETTINGS.CHUNK_SIZE_BLOCKS_X);
-    var chunk_y = Math.floor(y/SETTINGS.CHUNK_SIZE_BLOCKS_Y);
+    var chunk_x = Math.floor(x/SETTINGS.get("CHUNK_SIZE_BLOCKS_X"));
+    var chunk_y = Math.floor(y/SETTINGS.get("CHUNK_SIZE_BLOCKS_Y"));
 
     var canvasDimensionsVector = this.getCanvasDimensionsVector();
 
@@ -82,17 +84,17 @@ GameGrid.prototype.generateChunkRadius = function(x, y){
 }
 
 GameGrid.prototype.getViewRadiusX = function(canvas_width){
-    return Math.ceil((canvas_width/SETTINGS.BLOCK_WIDTH_PX)/2);
+    return Math.ceil((canvas_width/SETTINGS.get("BLOCK_WIDTH_PX"))/2);
 }
 
 GameGrid.prototype.getViewRadiusY = function(canvas_height){
-    return Math.ceil((canvas_height/SETTINGS.BLOCK_HEIGHT_PX)/2);
+    return Math.ceil((canvas_height/SETTINGS.get("BLOCK_HEIGHT_PX"))/2);
 }
 
 GameGrid.prototype.getGridCoordinatesAtPixelCoordinates = function(pixel_x, pixel_y){
     return {
-        column: Math.floor(pixel_x/SETTINGS.BLOCK_WIDTH_PX),
-        row: Math.floor(pixel_y/SETTINGS.BLOCK_HEIGHT_PX)
+        column: Math.floor(pixel_x/SETTINGS.get("BLOCK_WIDTH_PX")),
+        row: Math.floor(pixel_y/SETTINGS.get("BLOCK_HEIGHT_PX"))
     }
 }
 
@@ -120,10 +122,10 @@ GameGrid.prototype.getBlocksInView = function(view){
 
     var rows = [];
     var blocks = [];
-    var coordinates = this.getGridCoordinatesAtPixelCoordinates(centered_view.x, centered_view.y);    
+    var coordinates = this.getGridCoordinatesAtPixelCoordinates(centered_view.x, centered_view.y);   
 
-    var view_radius_y = this.getViewRadiusY(canvasDimensionsVector.y) + SETTINGS.VIEW_RADIUS_OFFSET_PX;    
-    var view_radius_x = this.getViewRadiusX(canvasDimensionsVector.x) + SETTINGS.VIEW_RADIUS_OFFSET_PX;
+    var view_radius_y = this.getViewRadiusY(canvasDimensionsVector.y) + 1;    
+    var view_radius_x = this.getViewRadiusX(canvasDimensionsVector.x) + 1;
 
     // build inital row
     rows.push(this.rows[coordinates.row]);

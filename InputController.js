@@ -14,16 +14,16 @@ InputController.prototype._bindCamera = function(event, state, $binding_element)
     var camera = this.input_state.camera;
     $binding_element.on(event, function(e){
         switch(e.keyCode){
-            case SETTINGS.BINDINGS.CAMERA_UP_KEYCODE:
+            case BINDINGS.CAMERA_UP_KEYCODE:
                 camera.up = state;
                 break;
-            case SETTINGS.BINDINGS.CAMERA_LEFT_KEYCODE:
+            case BINDINGS.CAMERA_LEFT_KEYCODE:
                 camera.left = state;
                 break;
-            case SETTINGS.BINDINGS.CAMERA_DOWN_KEYCODE:
+            case BINDINGS.CAMERA_DOWN_KEYCODE:
                 camera.down = state;
                 break;
-            case SETTINGS.BINDINGS.CAMERA_RIGHT_KEYCODE:
+            case BINDINGS.CAMERA_RIGHT_KEYCODE:
                 camera.right = state;
                 break;
         }
