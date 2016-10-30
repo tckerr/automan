@@ -1,0 +1,9 @@
+<div class="row">
+	<span>{{setting.key + ": "}}</span>
+
+	
+	<input ng-if="setting.type != 'boolean'" ng-model="setting.value" ng-change="update(setting.key, setting.value)">
+	<input ng-if="setting.type == 'boolean'" type="checkbox" ng-model="setting.value" ng-change="update(setting.key, setting.value)">
+
+
+</div>

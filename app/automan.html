@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Automan</title>
+
+    <!-- STYLES -->
+    <link rel="stylesheet" href="../lib\bootstrap-3.3.7-dist\css\bootstrap.min.css"></head>
+    <link rel="stylesheet" href="styles.css"></link>
+
+    <!-- LIB SCRIPTS -->    
+    <script type="text/javascript" src="../lib\jquery-3.1.1.min.js"></script>
+    <script type="text/javascript" src="../lib\bootstrap-3.3.7-dist\js\bootstrap.min.js"></script>
+   
+    <!-- UTIL SCRIPTS -->
+    <script type="text/javascript" src="../util/math.js"></script>
+
+    <!-- GAME SCRIPTS -->
+    <script type="text/javascript" src="../game/enum.js"></script>
+    <script type="text/javascript" src="../game/Setting.js"></script>
+    <script type="text/javascript" src="../game/Viewport.js"></script>
+    <script type="text/javascript" src="../game/FPSTracker.js"></script>
+    <script type="text/javascript" src="../game/Block.js"></script>
+    <script type="text/javascript" src="../game/GameGrid.js"></script>
+    <script type="text/javascript" src="../game/GameCanvas.js"></script>
+    <script type="text/javascript" src="../game/InputState.js"></script>
+    <script type="text/javascript" src="../game/InputController.js"></script>
+    <script type="text/javascript" src="../game/GameManager.js"></script>
+
+    <!-- APPLICATION SCRIPTS -->
+    <script type="text/javascript" src="../app/game.js"></script>
+    <script type="text/javascript" src="../app/directives/setting.js"></script>
+
+    <!-- ANGULAR  -->
+    <script type="text/javascript" src="../lib\angular.min.js"></script>
+    
+</head>
+
+<body class="background-gray">
+    <div ng-app="automan" ng-controller="mainController">
+        
+        <!-- CANVAS -->
+        <div class="row">        
+            <div class="col-md-1"></div>
+            <div class="col-md-10">
+                <canvas id="game-canvas"></canvas>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+
+        <div class="row" >
+            <div class="col-md-1"></div>
+            <div class="col-md-2 background-white">
+                <div class="row">FPS: {{fpsTracker.fps}}</div>
+            </div>
+            <div class="col-md-8 background-white">
+                <customsetting 
+                    ng-repeat="setting in settings.listDynamic()"
+                    value="setting"
+                    update="updateSetting">                    
+                </customsetting>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+    </div>
+</body>
+</html>
+

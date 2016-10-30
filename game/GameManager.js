@@ -56,6 +56,8 @@ GameManager.prototype.handleInputs = function(input_queue, viewport, grid){
 
 GameManager.prototype.handleClick = function(click, viewport, grid){
     var block = grid.getBlockAtPixelCoordinates(click.data.x, click.data.y, viewport);
+    
+    if (SETTINGS.get("HIGHLIGHT_BLOCK_ON_CLICK"))
     block.toggleHighlight();
 }
 
