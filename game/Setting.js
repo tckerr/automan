@@ -6,10 +6,18 @@ function Setting(key, default_value, dynamic){
     this.type = this.getType(default_value);
 }
 
+Setting.prototype.update = function(value){
+    this.value = this.castToInternalType(value);
+}
+
 Setting.prototype.getType = function(value){
-    if( value && typeof value == "string" && value[0] == "#")
-        return "color_hex"
+    //if( value && typeof value == "string" && value[0] == "#")
+    //    return "color_hex"
     return typeof value;
+}
+
+Setting.prototype.castToInternalType = function(value){
+    return eval(this.type[0].toUpperCase() + this.type.slice(1,this.type.length))(value);
 }
 
 function SettingsManager(){   
@@ -32,7 +40,7 @@ SettingsManager.prototype.get = function(key){
 }
 
 SettingsManager.prototype.update = function(key, value){
-    this.settings[key].value = value;
+    this.settings[key].update(value);
 }
 
 SettingsManager.prototype.reset = function(key){
