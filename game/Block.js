@@ -1,7 +1,6 @@
 class Block{
-    constructor(x, y){
-        this.x = x;
-        this.y = y;    
+    constructor(x, y){ 
+        this.pos = new Vector(x, y);
         this.highlight = false;
     }
 
@@ -9,8 +8,8 @@ class Block{
         //border
         var block_width = SETTINGS.get("BLOCK_WIDTH_PX");
         var block_height = SETTINGS.get("BLOCK_HEIGHT_PX");
-        var effective_x = this.x * block_width;
-        var effective_y = this.y * block_height;
+        var effective_x = this.pos.x * block_width;
+        var effective_y = this.pos.y * block_height;
 
         ctx.fillStyle = SETTINGS.get("BLOCK_DEFAULT_BORDER_COLOR");
         ctx.fillRect( 

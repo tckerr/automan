@@ -11,8 +11,6 @@ Setting.prototype.update = function(value){
 }
 
 Setting.prototype.getType = function(value){
-    //if( value && typeof value == "string" && value[0] == "#")
-    //    return "color_hex"
     return typeof value;
 }
 

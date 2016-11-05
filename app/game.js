@@ -7,19 +7,19 @@ $(function(){
 
     automan.controller('mainController', ['$scope', '$interval', function($scope, $interval) {  
 
-        var initializeGameLoop = function(gameManager, SETTINGS){
-            var frameLoop = gameManager.gameLoop.bind(gameManager);  
+        var initializeGameLoop = function(engine, SETTINGS){
+            var frameLoop = engine.gameLoop.bind(engine);  
             $interval(frameLoop, 1000/SETTINGS.get("MAX_FPS"));
         }   
 
         var initialize = function(){
             var $canvas = angular.element("#game-canvas");
-            var gameManager = new GameManager($canvas);
+            var engine = new Engine($canvas);
                   
-            initializeGameLoop(gameManager, SETTINGS)
+            initializeGameLoop(engine, SETTINGS)
 
             $scope.settings = SETTINGS;
-            $scope.fpsTracker = new FPSTracker(gameManager.game_data);
+            $scope.fpsTracker = new FPSTracker(engine.game_data);
         }        
 
         $scope.updateSetting = function(key, value){

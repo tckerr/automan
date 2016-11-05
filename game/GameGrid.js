@@ -153,3 +153,16 @@ GameGrid.prototype.getBlocksInView = function(view){
     }
     return blocks;
 }
+
+GameGrid.prototype.getBlocksInViewDynamic = function(view){
+    if (!this.previous_view){
+        this.previous_view = view;
+        this.previous_blocks_in_view = this.getBlocksInView(view);
+        return this.previous_blocks_in_view;
+    }
+
+    var view_diff = vector_difference(view, this.previous_view);
+    
+
+
+}
